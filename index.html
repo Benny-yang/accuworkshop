@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>營運效能實戰工作坊</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --border-color: #e5e7eb;
+            --surface: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Views */
+        .view {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        /* --- Home View --- */
+        .header {
+            background-color: var(--surface);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 4rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 5rem;
+        }
+
+        .card-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1200px) {
+            .card-row { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .card-row { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: #d1d5db;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #e5e7eb;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .card p {
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #f3f4f6;
+            color: #111827;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .card:hover .card-btn {
+            background-color: var(--primary);
+            color: #ffffff;
+        }
+
+        /* --- Detail View --- */
+        .detail-navbar {
+            background: var(--surface);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: var(--text-main);
+        }
+
+        .back-btn svg {
+            margin-right: 0.5rem;
+        }
+
+        .detail-hero {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            background: #e5e7eb;
+            position: relative;
+        }
+
+        .detail-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+        }
+
+        .detail-hero-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 3rem 2rem;
+            color: white;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .detail-hero-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .detail-hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .detail-body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: var(--surface);
+            min-height: 500px;
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .detail-section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .detail-steps {
+            list-style: none;
+            margin-bottom: 4rem;
+        }
+
+        .detail-steps li {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: #eff6ff;
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-right: 1.5rem;
+            border: 1px solid #bfdbfe;
+        }
+
+        .step-content strong {
+            display: block;
+            font-size: 1.125rem;
+            color: var(--text-main);
+            margin-bottom: 0.25rem;
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .folder-path-wrapper {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .folder-path {
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 1rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Home View -->
+    <div id="view-home" class="view active">
+        <header class="header">
+            <h1>AM 營運效能實戰工作坊</h1>
+            <p>選擇最符合您日常業務挑戰的情境，開始體驗 AI 自動化工作流。</p>
+            <div style="margin-top: 1.5rem;">
+                <a href="workshop_materials.zip" download class="card-btn" style="background-color: var(--primary); color: white; display: inline-flex; width: auto; padding: 0.75rem 2rem; border-radius: 999px; text-decoration: none; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    下載全部闖關素材 (ZIP)
+                </a>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="card-row">
+                
+                <!-- Card 5 (必選題) -->
+                <div class="card" onclick="goToDetail(5)" style="border: 2px solid var(--primary);">
+                    <div class="card-image">
+                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #bfdbfe; color: var(--primary); font-size: 3rem; font-weight: 800;">★</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tag">醫療零售 / 點數忠誠計畫</div>
+                        <h2>[必選] 愛爾康突發數據需求</h2>
+                        <p>跨表單合併「會員註冊」與「點數紀錄」，在下班前產出高管要看的忠誠計畫洞察。</p>
+                        <button class="card-btn" style="background-color: var(--primary); color: white;">進入情境內頁</button>
+                    </div>
+                </div>
+
+                <!-- Card 1 -->
+                <div class="card" onclick="goToDetail(1)">
+                    <div class="card-image">
+                        <img src="/Users/Benny/.gemini/antigravity-ide/brain/ddaf9210-3c37-434f-8687-17e132ab7fea/photo_qbr_1779356204137.png" alt="QBR Meeting">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tag">B2B SaaS / 代理商</div>
+                        <h2>大客戶 QBR 救援行動</h2>
+                        <p>從零散的會議紀錄與生硬的系統日誌中，快速淬鍊出大老闆看得懂的商業簡報。</p>
+                        <button class="card-btn">進入情境內頁</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card" onclick="goToDetail(2)">
+                    <div class="card-image">
+                        <img src="/Users/Benny/.gemini/antigravity-ide/brain/ddaf9210-3c37-434f-8687-17e132ab7fea/photo_promo_1779356231763.png" alt="Promo Campaign">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tag">電商平台 / 零售業</div>
+                        <h2>大型促銷檔期結案</h2>
+                        <p>清洗非結構化的網紅報價單，並從數千筆訂單數據中找出隱藏的轉換盲點。</p>
+                        <button class="card-btn">進入情境內頁</button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card" onclick="goToDetail(3)">
+                    <div class="card-image">
+                        <img src="/Users/Benny/.gemini/antigravity-ide/brain/ddaf9210-3c37-434f-8687-17e132ab7fea/photo_cs_1779356249823.png" alt="Customer Service">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tag">旅宿業 / 訂閱制</div>
+                        <h2>VIP 客訴滿意度挽救</h2>
+                        <p>面對大批憤怒客訴，利用 AI 進行情感分析，並依照 SOP 自動擬定安撫信件。</p>
+                        <button class="card-btn">進入情境內頁</button>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card" onclick="goToDetail(4)">
+                    <div class="card-image">
+                        <img src="/Users/Benny/.gemini/antigravity-ide/brain/ddaf9210-3c37-434f-8687-17e132ab7fea/photo_ecommerce_1779356270071.png" alt="Ecommerce Report">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tag">全通路零售</div>
+                        <h2>電商月報與輪廓分析</h2>
+                        <p>將毫無關聯的會員資料與銷售明細進行交叉比對，找出精準 SKU 與主力客群。</p>
+                        <button class="card-btn">進入情境內頁</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail View (Full Page) -->
+    <div id="view-detail" class="view">
+        <nav class="detail-navbar">
+            <button class="back-btn" onclick="goToHome()">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                返回情境列表
+            </button>
+        </nav>
+
+        <div class="detail-hero">
+            <img id="detailImg" src="" alt="Hero Image">
+            <div class="detail-hero-content">
+                <div class="detail-hero-tag" id="detailTag">標籤</div>
+                <h1 class="detail-hero-title" id="detailTitle">任務標題</h1>
+            </div>
+        </div>
+
+        <div class="detail-body">
+            
+            <h3 class="detail-section-title">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                實戰闖關步驟
+            </h3>
+            <ul class="detail-steps" id="detailSteps">
+                <!-- Injected via JS -->
+            </ul>
+
+            <h3 class="detail-section-title">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                任務素材取得
+            </h3>
+            <div id="detailPath" style="margin-top: 1rem;">
+                <!-- Link injected via JS -->
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const scenarios = {
+            1: {
+                title: "大客戶 QBR 救援行動",
+                tag: "B2B SaaS / 代理商",
+                img: "/Users/Benny/.gemini/antigravity-ide/brain/ddaf9210-3c37-434f-8687-17e132ab7fea/photo_qbr_1779356204137.png",
+                steps: `
+                    <li><div class="step-number">1</div><div class="step-content"><strong>現狀盤點與痛點歸納</strong><p>從混亂的會議記錄中，萃取出客戶最在意的三大痛點與下季期望。</p></div></li>
+                    <li><div class="step-number">2</div><div class="step-content"><strong>系統使用行為剖析</strong><p>從 5000 筆系統日誌中，找出最活躍的部門與最耗時的功能，佐證客戶反饋。</p></div></li>
+                    <li><div class="step-number">3</div><div class="step-content"><strong>高階主管匯報產出</strong><p>將上述洞察轉化為適合向 C-level 報告的視覺化素材與簡報論述 (呈現形式由您自行決定，重點在於說服力)。</p></div></li>
+                `,
+                path: `<a href="Scenario_1_QBR.zip" download class="card-btn" style="background-color: var(--primary); color: white; display: inline-flex; width: auto; padding: 0.75rem 2rem; border-radius: 999px; text-decoration: none;"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>下載 Scenario_1_QBR.zip</a>`
+            },
+            2: {
+                title: "大型促銷檔期結案",
+                tag: "電商平台 / 零售業",
+                img: "/Users/Benny/.gemini/antigravity-ide/brain/ddaf9210-3c37-434f-8687-17e132ab7fea/photo_promo_1779356231763.png",
+                steps: `
+                    <li><div class="step-number">1</div><div class="step-content"><strong>網紅合約條件統整</strong><p>從檔名混亂且非結構化的合約與報價單中，理出一份清晰的條件總表。</p></div></li>
+                    <li><div class="step-number">2</div><div class="step-content"><strong>活動成效與盲點分析</strong><p>深度挖掘數千筆訂單，找出客單價最高的城市、轉換率最差的優惠碼，以及投資報酬率 (ROI) 最高的 KOL。</p></div></li>
+                    <li><div class="step-number">3</div><div class="step-content"><strong>優化提案與戰情呈現</strong><p>針對成效最差的環節提出下期優化建議，並為內部團隊建立一份可一眼看懂的檔期戰情看板 (形式由您自行決定)。</p></div></li>
+                `,
+                path: `<a href="Scenario_2_Promo_Campaign.zip" download class="card-btn" style="background-color: var(--primary); color: white; display: inline-flex; width: auto; padding: 0.75rem 2rem; border-radius: 999px; text-decoration: none;"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>下載 Scenario_2_Promo_Campaign.zip</a>`
+            },
+            3: {
+                title: "VIP 客訴滿意度挽救",
+                tag: "旅宿業 / 訂閱制",
+                img: "/Users/Benny/.gemini/antigravity-ide/brain/ddaf9210-3c37-434f-8687-17e132ab7fea/photo_cs_1779356249823.png",
+                steps: `
+                    <li><div class="step-number">1</div><div class="step-content"><strong>海量客訴情感定調</strong><p>快速消化 500 筆夾雜情緒用語的客訴，定調出佔比最高的核心公關災情。</p></div></li>
+                    <li><div class="step-number">2</div><div class="step-content"><strong>危機處理與 SOP 應對</strong><p>對齊公司內部規範，自動擬定不同嚴重程度的安撫信件與相應的補償方案。</p></div></li>
+                    <li><div class="step-number">3</div><div class="step-content"><strong>災情監控與內部檢討</strong><p>建立一個能隨時追蹤未結案工單數量的監控機制，並產出供內部檢討的匯報內容 (形式由您自行決定)。</p></div></li>
+                `,
+                path: `<a href="Scenario_3_VIP_Feedback.zip" download class="card-btn" style="background-color: var(--primary); color: white; display: inline-flex; width: auto; padding: 0.75rem 2rem; border-radius: 999px; text-decoration: none;"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>下載 Scenario_3_VIP_Feedback.zip</a>`
+            },
+            4: {
+                title: "電商月報與輪廓分析",
+                tag: "全通路零售",
+                img: "/Users/Benny/.gemini/antigravity-ide/brain/ddaf9210-3c37-434f-8687-17e132ab7fea/photo_ecommerce_1779356270071.png",
+                steps: `
+                    <li><div class="step-number">1</div><div class="step-content"><strong>跨維度資料整併</strong><p>將毫無關聯的「會員資料」與「銷售明細」進行交叉關聯，找出帶動營收的關鍵分類。</p></div></li>
+                    <li><div class="step-number">2</div><div class="step-content"><strong>熱銷品項與客群輪廓</strong><p>追查出各分類底下的 Top 3 具體品項 (SKU)，並描繪出購買這些商品的主力客群 (年齡、性別)。</p></div></li>
+                    <li><div class="step-number">3</div><div class="step-content"><strong>營運月報產出</strong><p>計算出不同會員等級的平均客單價 (ARPU) 差異，並將所有發現彙整為一份高質感的總經理月報 (形式由您自行決定)。</p></div></li>
+                `,
+                path: `<a href="Scenario_4_Ecommerce_Sales.zip" download class="card-btn" style="background-color: var(--primary); color: white; display: inline-flex; width: auto; padding: 0.75rem 2rem; border-radius: 999px; text-decoration: none;"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>下載 Scenario_4_Ecommerce_Sales.zip</a>`
+            },
+            5: {
+                title: "愛爾康 (Alcon) 臨時突發數據需求",
+                tag: "必選題 / 醫療零售",
+                img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400'><rect width='100%' height='100%' fill='%23bfdbfe'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='100' fill='%232563eb'>★ 必選題</text></svg>",
+                steps: `
+                    <li><div class="step-number">1</div><div class="step-content"><strong>API 數據理解與串接準備</strong><p>本次任務無現成報表。請直接閱讀 <a href="https://acculitloyal.docs.apiary.io" target="_blank" style="color:var(--primary);text-decoration:underline;">API 官方文件</a>，找出獲取「會員資料」與「點數紀錄」的 Endpoint，並規劃如何串接與 Join 數據。</p></div></li>
+                    <li><div class="step-number">2</div><div class="step-content"><strong>關鍵數據剖析</strong><p>基於總監的廣泛提問，請自由發揮並探索這份合併後的數據，挖掘出任何你認為對行銷團隊有價值的商業洞察與特殊現象。</p></div></li>
+                    <li><div class="step-number">3</div><div class="step-content"><strong>高管救火簡報產出</strong><p>將冰冷的數字轉換為 3 點可以直接放進 PPT 的商業洞察 (Insights)，並產出 Email 回覆草稿與 Markdown 總結表。</p></div></li>
+                `,
+                path: `<a href="https://acculitloyal.docs.apiary.io" target="_blank" class="card-btn" style="background-color: var(--primary); color: white; display: inline-flex; width: auto; padding: 0.75rem 2rem; border-radius: 999px; text-decoration: none;"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>前往 AccuLitLoyal API 文件</a>`
+            }
+        };
+
+        const viewHome = document.getElementById('view-home');
+        const viewDetail = document.getElementById('view-detail');
+
+        function goToDetail(id) {
+            const data = scenarios[id];
+            
+            // Populate Detail View
+            document.getElementById('detailImg').src = data.img;
+            document.getElementById('detailTag').textContent = data.tag;
+            document.getElementById('detailTitle').textContent = data.title;
+            document.getElementById('detailSteps').innerHTML = data.steps;
+            document.getElementById('detailPath').innerHTML = data.path;
+
+            // Switch Views
+            viewHome.classList.remove('active');
+            window.scrollTo(0, 0); // Scroll to top
+            viewDetail.classList.add('active');
+        }
+
+        function goToHome() {
+            viewDetail.classList.remove('active');
+            window.scrollTo(0, 0);
+            viewHome.classList.add('active');
+        }
+    </script>
+</body>
+</html>
