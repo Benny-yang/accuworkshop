@@ -446,6 +446,8 @@
 
         <div class="detail-body">
             
+            <div id="detailObjectiveContainer"></div>
+
             <h3 class="detail-section-title">
                 <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
                 實戰闖關步驟
@@ -471,6 +473,7 @@
                 title: "大客戶 QBR 救援行動",
                 tag: "B2B SaaS / 代理商",
                 img: "./assets/photo_qbr_1779356204137.jpg",
+                objective: "從零散的會議紀錄與生硬的系統日誌中，快速淬鍊出大老闆看得懂的商業簡報。",
                 steps: `
                     <li><div class="step-number">1</div><div class="step-content"><strong>現狀盤點與痛點歸納</strong><p>從混亂的會議記錄中，萃取出客戶最在意的三大痛點與下季期望。</p></div></li>
                     <li><div class="step-number">2</div><div class="step-content"><strong>系統使用行為剖析</strong><p>從 5000 筆系統日誌中，找出最活躍的部門與最耗時的功能，佐證客戶反饋。</p></div></li>
@@ -482,6 +485,7 @@
                 title: "大型促銷檔期結案",
                 tag: "電商平台 / 零售業",
                 img: "./assets/photo_promo_1779356231763.jpg",
+                objective: "清洗非結構化的網紅報價單，並從數千筆訂單數據中找出隱藏的轉換盲點。",
                 steps: `
                     <li><div class="step-number">1</div><div class="step-content"><strong>網紅合約條件統整</strong><p>從檔名混亂且非結構化的合約與報價單中，理出一份清晰的條件總表。</p></div></li>
                     <li><div class="step-number">2</div><div class="step-content"><strong>活動成效與盲點分析</strong><p>深度挖掘數千筆訂單，找出客單價最高的城市、轉換率最差的優惠碼，以及投資報酬率 (ROI) 最高的 KOL。</p></div></li>
@@ -493,6 +497,7 @@
                 title: "VIP 客訴滿意度挽救",
                 tag: "旅宿業 / 訂閱制",
                 img: "./assets/photo_cs_1779356249823.jpg",
+                objective: "面對大批憤怒客訴，利用 AI 進行情感分析，並依照 SOP 自動擬定安撫信件。",
                 steps: `
                     <li><div class="step-number">1</div><div class="step-content"><strong>海量客訴情感定調</strong><p>快速消化 500 筆夾雜情緒用語的客訴，定調出佔比最高的核心公關災情。</p></div></li>
                     <li><div class="step-number">2</div><div class="step-content"><strong>危機處理與 SOP 應對</strong><p>對齊公司內部規範，自動擬定不同嚴重程度的安撫信件與相應的補償方案。</p></div></li>
@@ -504,6 +509,7 @@
                 title: "電商月報與輪廓分析",
                 tag: "全通路零售",
                 img: "./assets/photo_ecommerce_1779356270071.jpg",
+                objective: "將毫無關聯的會員資料與銷售明細進行交叉關聯，找出帶動營收的關鍵分類，並描繪出主力客群輪廓。",
                 steps: `
                     <li><div class="step-number">1</div><div class="step-content"><strong>跨維度資料整併</strong><p>將毫無關聯的「會員資料」與「銷售明細」進行交叉關聯，找出帶動營收的關鍵分類。</p></div></li>
                     <li><div class="step-number">2</div><div class="step-content"><strong>熱銷品項與客群輪廓</strong><p>追查出各分類底下的 Top 3 具體品項 (SKU)，並描繪出購買這些商品的主力客群 (年齡、性別)。</p></div></li>
@@ -515,6 +521,7 @@
                 title: "愛爾康 (Alcon) 臨時突發數據需求",
                 tag: "必選題 / 醫療零售",
                 img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400'><rect width='100%' height='100%' fill='%23bfdbfe'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='100' fill='%232563eb'>★ 必選題</text></svg>",
+                objective: "在缺乏現成報表且時間緊迫的狀況下，利用 AI 輔助理解 API 文件，自行撈取並整併「過去三個月」的「會員註冊」與「點數紀錄」數據。最終需產出 3 個能直接向高階主管匯報的關鍵商業洞察，完成緊急救火任務。",
                 steps: `
                     <li><div class="step-number">1</div><div class="step-content"><strong>API 數據理解與串接準備</strong><p>本次任務無現成報表。請直接閱讀 <a href="https://acculitloyal.docs.apiary.io" target="_blank" style="color:var(--primary);text-decoration:underline;">API 官方文件</a>，找出獲取「會員資料」與「點數紀錄」的 Endpoint，並規劃如何串接與 Join 數據。</p></div></li>
                     <li><div class="step-number">2</div><div class="step-content"><strong>關鍵數據剖析</strong><p>基於總監的廣泛提問，請自由發揮並探索這份合併後的數據，挖掘出任何你認為對行銷團隊有價值的商業洞察與特殊現象。</p></div></li>
@@ -536,6 +543,22 @@
             document.getElementById('detailTitle').textContent = data.title;
             document.getElementById('detailSteps').innerHTML = data.steps;
             document.getElementById('detailPath').innerHTML = data.path;
+
+            const objContainer = document.getElementById('detailObjectiveContainer');
+            if (data.objective) {
+                objContainer.innerHTML = `
+                    <h3 class="detail-section-title" style="color: var(--primary);">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        任務目標
+                    </h3>
+                    <p style="color: var(--text-main); font-size: 1.05rem; line-height: 1.6; margin-bottom: 3rem; background: #eff6ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary);">
+                        ${data.objective}
+                    </p>
+                `;
+                objContainer.style.display = 'block';
+            } else {
+                objContainer.style.display = 'none';
+            }
 
             // Switch Views
             viewHome.classList.remove('active');
