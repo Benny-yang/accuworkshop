@@ -524,11 +524,22 @@
                 img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400'><rect width='100%' height='100%' fill='%23bfdbfe'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='100' fill='%232563eb'>★ 必選題</text></svg>",
                 objective: "在缺乏現成報表且時間緊迫的狀況下，利用 AI 輔助理解 API 文件，自行撈取並整併「過去三個月」的「會員註冊」與「點數紀錄」數據。最終需產出 3 個能直接向高階主管匯報的關鍵商業洞察，完成緊急救火任務。",
                 steps: `
-                    <li><div class="step-number">1</div><div class="step-content"><strong>API 數據理解與串接準備</strong><p>本次任務無現成報表。請直接閱讀 <a href="https://acculitloyal.docs.apiary.io" target="_blank" style="color:var(--primary);text-decoration:underline;">API 官方文件</a>，找出獲取「會員資料」與「點數紀錄」的 Endpoint，並規劃如何串接與 Join 數據。</p></div></li>
+                    <li><div class="step-number">1</div><div class="step-content"><strong>API 數據理解與串接準備</strong><p>本次任務提供了「愛爾康登錄盒數總表」做為基礎報表。請直接閱讀 <a href="https://acculitloyal.docs.apiary.io" target="_blank" style="color:var(--primary);text-decoration:underline;">API 官方文件</a>，找出獲取「會員資料」與「點數紀錄」的 Endpoint，並規劃如何與這份 Excel 報表進行數據整併。</p></div></li>
                     <li><div class="step-number">2</div><div class="step-content"><strong>關鍵數據剖析</strong><p>基於總監的廣泛提問，請自由發揮並探索這份合併後的數據，挖掘出任何你認為對行銷團隊有價值的商業洞察與特殊現象。</p></div></li>
                     <li><div class="step-number">3</div><div class="step-content"><strong>高管救火簡報產出</strong><p>將冰冷的數字轉換為 3 點可以直接放進 PPT 的商業洞察 (Insights)，並產出 Email 回覆草稿與 Markdown 總結表。</p></div></li>
                 `,
-                path: `<a href="https://acculitloyal.docs.apiary.io" target="_blank" class="card-btn" style="background-color: var(--primary); color: white; display: inline-flex; width: auto; padding: 0.75rem 2rem; border-radius: 999px; text-decoration: none;"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>前往 AccuLitLoyal API 文件</a>`
+                path: `
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="Scenario_5_Alcon.zip" download class="card-btn" style="background-color: var(--primary); color: white; display: inline-flex; width: auto; padding: 0.75rem 2rem; border-radius: 999px; text-decoration: none;">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                            下載 Scenario_5_Alcon.zip
+                        </a>
+                        <a href="https://acculitloyal.docs.apiary.io" target="_blank" class="card-btn" style="background-color: #f3f4f6; color: #111827; display: inline-flex; width: auto; padding: 0.75rem 2rem; border-radius: 999px; text-decoration: none; border: 1px solid var(--border-color);">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            前往 API 文件
+                        </a>
+                    </div>
+                `
             }
         };
 
