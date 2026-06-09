@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>營運效能實戰工作坊</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-color: #f8fafc;
@@ -79,10 +82,15 @@
         }
 
         @media (max-width: 1200px) {
-            .card-row { grid-template-columns: repeat(2, 1fr); }
+            .card-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
+
         @media (max-width: 768px) {
-            .card-row { grid-template-columns: 1fr; }
+            .card-row {
+                grid-template-columns: 1fr;
+            }
         }
 
         .card {
@@ -93,7 +101,7 @@
             display: flex;
             flex-direction: column;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             cursor: pointer;
         }
 
@@ -220,7 +228,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
         }
 
         .detail-hero-content {
@@ -335,11 +343,19 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- Home View -->
@@ -348,8 +364,13 @@
             <h1>AM 營運效能實戰工作坊</h1>
             <p>選擇最符合您日常業務挑戰的情境，開始體驗 AI 自動化工作流。</p>
             <div style="margin-top: 1.5rem;">
-                <a href="workshop_materials.zip" download class="card-btn" style="background-color: var(--primary); color: white; display: inline-flex; width: auto; padding: 0.75rem 2rem; border-radius: 999px; text-decoration: none; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                <a href="workshop_materials.zip" download class="card-btn"
+                    style="background-color: var(--primary); color: white; display: inline-flex; width: auto; padding: 0.75rem 2rem; border-radius: 999px; text-decoration: none; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        style="margin-right: 8px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
                     下載全部闖關素材 (ZIP)
                 </a>
             </div>
@@ -357,11 +378,13 @@
 
         <div class="container">
             <div class="card-row">
-                
+
                 <!-- Card 5 (必選題) -->
                 <div class="card" onclick="goToDetail(5)" style="border: 2px solid var(--primary);">
                     <div class="card-image">
-                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #bfdbfe; color: var(--primary); font-size: 3rem; font-weight: 800;">★</div>
+                        <div
+                            style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #bfdbfe; color: var(--primary); font-size: 3rem; font-weight: 800;">
+                            ★</div>
                     </div>
                     <div class="card-content">
                         <div class="card-tag">醫療零售 / 點數忠誠計畫</div>
@@ -431,7 +454,10 @@
     <div id="view-detail" class="view">
         <nav class="detail-navbar">
             <button class="back-btn" onclick="goToHome()">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
                 返回情境列表
             </button>
         </nav>
@@ -445,11 +471,15 @@
         </div>
 
         <div class="detail-body">
-            
+
             <div id="detailObjectiveContainer"></div>
 
             <h3 class="detail-section-title">
-                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
+                    </path>
+                </svg>
                 實戰闖關步驟
             </h3>
             <ul class="detail-steps" id="detailSteps">
@@ -457,7 +487,10 @@
             </ul>
 
             <h3 class="detail-section-title">
-                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                </svg>
                 任務素材取得
             </h3>
             <div id="detailPath" style="margin-top: 1rem;">
@@ -524,7 +557,7 @@
                 img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400'><rect width='100%' height='100%' fill='%23bfdbfe'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='100' fill='%232563eb'>★ 必選題</text></svg>",
                 objective: "在缺乏現成報表且時間緊迫的狀況下，利用 AI 輔助理解 API 文件，自行撈取並整併「過去三個月」的「會員註冊」與「點數紀錄」數據。最終需產出 3 個能直接向高階主管匯報的關鍵商業洞察，完成緊急救火任務。",
                 steps: `
-                    <li><div class="step-number">1</div><div class="step-content"><strong>API 數據理解與串接準備</strong><p>本次任務提供了「愛爾康登錄盒數總表」做為基礎報表。請直接閱讀 <a href="https://acculitloyal.docs.apiary.io" target="_blank" style="color:var(--primary);text-decoration:underline;">API 官方文件</a>，找出獲取「會員資料」與「點數紀錄」的 Endpoint，並規劃如何與這份 Excel 報表進行數據整併。</p></div></li>
+                    <li><div class="step-number">1</div><div class="step-content"><strong>API 數據理解與串接準備</strong><p>本次任務提供了「愛爾康登錄盒數總表」做為基礎報表。請直接閱讀 <a href="https://memberlitloyalopenapi.docs.apiary.io/#" target="_blank" style="color:var(--primary);text-decoration:underline;">API 官方文件</a>，找出獲取「會員資料」與「點數紀錄」的 Endpoint，並規劃如何與這份 Excel 報表進行數據整併。</p></div></li>
                     <li><div class="step-number">2</div><div class="step-content"><strong>關鍵數據剖析</strong><p>基於總監的廣泛提問，請自由發揮並探索這份合併後的數據，挖掘出任何你認為對行銷團隊有價值的商業洞察與特殊現象。</p></div></li>
                     <li><div class="step-number">3</div><div class="step-content"><strong>高管救火簡報產出</strong><p>將冰冷的數字轉換為 3 點可以直接放進 PPT 的商業洞察 (Insights)，並產出 Email 回覆草稿與 Markdown 總結表。</p></div></li>
                 `,
@@ -548,7 +581,7 @@
 
         function goToDetail(id) {
             const data = scenarios[id];
-            
+
             // Populate Detail View
             document.getElementById('detailImg').src = data.img;
             document.getElementById('detailTag').textContent = data.tag;
@@ -585,4 +618,5 @@
         }
     </script>
 </body>
+
 </html>
